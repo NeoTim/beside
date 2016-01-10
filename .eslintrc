@@ -28,7 +28,7 @@
     "camelcase": [1, {
       "properties": "always"
     }],
-    "indent": [1, 2],
+    "indent": [2, 2, {"SwitchCase": 1}],
     "quotes": [1, "single"]
 
   }
