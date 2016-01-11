@@ -31,7 +31,6 @@ module.exports = {
       var top = rectMe.top + y - documentMarginTop - bodyMarginTop - documentPaddingTop;
       var left = rectMe.left + x - bodyMarginLeft - documentMarginLeft - bodyPaddingTop;
 
-      options.where = 'top center';
       switch (options.where) {
         case 'top center':
           top = top - rectYou.height;
