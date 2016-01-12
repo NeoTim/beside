@@ -15,7 +15,6 @@ module.exports = {
       var x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
       var y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
 
-
       var rectYou = $you.getBoundingClientRect();
 
       var rectMe = $me.getBoundingClientRect();
@@ -53,7 +52,8 @@ module.exports = {
           break;
         case 'bottom right':
           top = top + rectMe.height;
-          left = left - rectMe.width;
+          left = left - rectYou.width + rectMe.width;
+          break;
 
         case 'left center':
           top = top - rectYou.height / 2 + rectMe.height / 2;

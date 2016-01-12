@@ -187,7 +187,8 @@ module.exports = {
           break;
         case 'bottom right':
           top = top + rectMe.height;
-          left = left - rectMe.width;
+          left = left - rectYou.width + rectMe.width;
+          break;
 
         case 'left center':
           top = top - rectYou.height / 2 + rectMe.height / 2;
