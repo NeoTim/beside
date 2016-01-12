@@ -10,7 +10,7 @@ function getCss(element, styleName) {
 }
 
 function setSingleCss(element, styleName, styleValue) {
-  if (typeof styleValue === 'number') {
+  if (typeof styleValue === 'number' &&  styleName !== 'opacity') {
     styleValue = styleValue.toString() + 'px';
   }
 
@@ -21,7 +21,7 @@ function setSingleCss(element, styleName, styleValue) {
 function setMultiCss(element, obj) {
   for (var key in obj) {
     var styleValue = obj[key];
-    if (typeof styleValue === 'number') {
+    if (typeof styleValue === 'number' && key !== 'opacity') {
       styleValue = styleValue.toString() + 'px';
     }
 

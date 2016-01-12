@@ -45,7 +45,7 @@ function getCss(element, styleName) {
 }
 
 function setSingleCss(element, styleName, styleValue) {
-  if (typeof styleValue === 'number') {
+  if (typeof styleValue === 'number' && styleName !== 'opacity') {
     styleValue = styleValue.toString() + 'px';
   }
 
@@ -56,7 +56,7 @@ function setSingleCss(element, styleName, styleValue) {
 function setMultiCss(element, obj) {
   for (var key in obj) {
     var styleValue = obj[key];
-    if (typeof styleValue === 'number') {
+    if (typeof styleValue === 'number' && key !== 'opacity') {
       styleValue = styleValue.toString() + 'px';
     }
 
@@ -142,6 +142,7 @@ module.exports = {
   init: function init(options) {
     var $me = options.me;
     var $you = options.you;
+    var $body = document.body;
 
     function setPosition() {
       var supportPageOffset = window.pageXOffset !== undefined;
@@ -207,6 +208,7 @@ module.exports = {
           left = left + rectMe.width;
           break;
         case 'right top':
+          left = left + rectMe.width;
           break;
         case 'right bottom':
           top = top - rectYou.height + rectMe.height;
@@ -219,12 +221,12 @@ module.exports = {
       dom.css($you, {
         position: 'absolute',
         top: top + 'px',
-        left: left + 'px'
+        left: left + 'px',
+        opacity: 1
       });
     }
 
     setPosition();
-    var $body = document.body;
     $body.appendChild($you);
 
     event.bind(window, 'resize', function () {
