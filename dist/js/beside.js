@@ -232,6 +232,43 @@ module.exports = {
           top = top - rectYou.height + rectMe.height;
           left = left + rectMe.width;
           break;
+
+        case 'top left inner':
+
+          // nothing
+          break;
+        case 'top center inner':
+          left = left - rectYou.width / 2 + rectMe.width / 2;
+          break;
+        case 'top right inner':
+          left = left - rectYou.width + rectMe.width;
+          break;
+        case 'left center inner':
+          top = top - rectYou.height / 2 + rectMe.height / 2;
+          break;
+        case 'left center inner':
+          top = top - rectYou.height / 2 + rectMe.height / 2;
+          break;
+        case 'center center inner':
+          top = top - rectYou.height / 2 + rectMe.height / 2;
+          left = left - rectYou.width / 2 + rectMe.width / 2;
+          break;
+        case 'right center inner':
+          top = top - rectYou.height / 2 + rectMe.height / 2;
+          left = left - rectYou.width + rectMe.width;
+          break;
+        case 'bottom left inner':
+          top = top - rectYou.height + rectMe.height;
+          break;
+        case 'bottom center inner':
+          top = top - rectYou.height + rectMe.height;
+          left = left - rectYou.width / 2 + rectMe.width / 2;
+          break;
+        case 'bottom right inner':
+          top = top - rectYou.height + rectMe.height;
+          left = left - rectYou.width + rectMe.width;
+          break;
+
         default:
           break;
       }
