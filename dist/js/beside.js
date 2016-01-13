@@ -12,7 +12,18 @@ function init(options) {
   i.init(options);
 }
 
-},{"./instance":5}],2:[function(require,module,exports){
+},{"./instance":7}],2:[function(require,module,exports){
+'use strict';
+
+var supportPageOffset = window.pageXOffset !== undefined;
+var isCSS1Compat = (document.compatMode || '') === 'CSS1Compat';
+
+var x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
+var y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+
+module.exports = { x: x, y: y };
+
+},{}],3:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -30,7 +41,31 @@ var beside = require('./beside');
   return beside;
 });
 
-},{"./beside":1}],3:[function(require,module,exports){
+},{"./beside":1}],4:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+  offset: function offset(_offset) {
+    var regex = /^[0-9\-]/;
+    var arr = _offset.split(' ');
+    if (arr.length !== 2 || !regex.test(arr[0]) || !regex.test(arr[1])) {
+      throw new Error('value offset invalid, you should set something like "-10px 0"');
+    }
+  },
+
+  where: function where(_where) {
+    if (!_where || _where === '') {
+      throw new Error('value where invalid, you should set something like "top left"');
+    }
+
+    var arr = _where.split(' ');
+    if (arr.length < 2 && arr.length > 3) {
+      throw new Error('value where invalid, you should set something like "top left"');
+    }
+  }
+};
+
+},{}],5:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -109,7 +144,7 @@ var dom = {
 
 module.exports = dom;
 
-},{}],4:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 var event = {
@@ -132,162 +167,180 @@ var event = {
 
 module.exports = event;
 
-},{}],5:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 var dom = require('./dom');
 var event = require('./event');
+var check = require('./check');
+var you = require('./you');
 
 module.exports = {
   init: function init(options) {
-    var $me = options.me;
+    options.offset = options.offset || '0 0'; // default value
+
+    check.offset(options.offset);
+    check.where(options.where);
+
     var $you = options.you;
     var $body = document.body;
 
-    function setPosition() {
-      var supportPageOffset = window.pageXOffset !== undefined;
-      var isCSS1Compat = (document.compatMode || '') === 'CSS1Compat';
-
-      var x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
-      var y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
-
-      var rectYou = $you.getBoundingClientRect();
-
-      var rectMe = $me.getBoundingClientRect();
-
-      var documentMarginTop = dom.css(document.documentElement, 'margin-top');
-      var documentMarginLeft = dom.css(document.documentElement, 'margin-left');
-      var documentPaddingTop = dom.css(document.documentElement, 'padding-top');
-
-      var bodyMarginTop = dom.css(document.body, 'margin-top');
-      var bodyMarginLeft = dom.css(document.body, 'margin-left');
-      var bodyPaddingTop = dom.css(document.body, 'padding-top');
-
-      var top = rectMe.top + y - documentMarginTop - bodyMarginTop - documentPaddingTop;
-      var left = rectMe.left + x - bodyMarginLeft - documentMarginLeft - bodyPaddingTop;
-
-      switch (options.where) {
-        case 'top center':
-          top = top - rectYou.height;
-          left = left - rectYou.width / 2 + rectMe.width / 2;
-          break;
-        case 'top left':
-          top = top - rectYou.height;
-          break;
-        case 'top right':
-          top = top - rectYou.height;
-          left = left - rectYou.width + rectMe.width;
-          break;
-
-        case 'top left diagonal':
-          top = top - rectYou.height;
-          left = left - rectYou.width;
-          break;
-
-        case 'top right diagonal':
-          top = top - rectYou.height;
-          left = left + rectMe.width;
-          break;
-
-        case 'bottom center':
-          top = top + rectMe.height;
-          left = left - rectYou.width / 2 + rectMe.width / 2;
-          break;
-        case 'bottom left':
-          top = top + rectMe.height;
-          break;
-        case 'bottom right':
-          top = top + rectMe.height;
-          left = left - rectYou.width + rectMe.width;
-          break;
-        case 'bottom left diagonal':
-          top = top + rectMe.height;
-          left = left - rectYou.width;
-          break;
-        case 'bottom right diagonal':
-          top = top + rectMe.height;
-          left = left + rectMe.width;
-          break;
-
-        case 'left center':
-          top = top - rectYou.height / 2 + rectMe.height / 2;
-          left = left - rectYou.width;
-          break;
-        case 'left top':
-          left = left - rectYou.width;
-          break;
-        case 'left bottom':
-          top = top - rectYou.height + rectMe.height;
-          left = left - rectYou.width;
-          break;
-
-        case 'right center':
-          top = top - rectYou.height / 2 + rectMe.height / 2;
-          left = left + rectMe.width;
-          break;
-        case 'right top':
-          left = left + rectMe.width;
-          break;
-        case 'right bottom':
-          top = top - rectYou.height + rectMe.height;
-          left = left + rectMe.width;
-          break;
-
-        case 'top left inner':
-
-          // nothing
-          break;
-        case 'top center inner':
-          left = left - rectYou.width / 2 + rectMe.width / 2;
-          break;
-        case 'top right inner':
-          left = left - rectYou.width + rectMe.width;
-          break;
-        case 'left center inner':
-          top = top - rectYou.height / 2 + rectMe.height / 2;
-          break;
-        case 'left center inner':
-          top = top - rectYou.height / 2 + rectMe.height / 2;
-          break;
-        case 'center center inner':
-          top = top - rectYou.height / 2 + rectMe.height / 2;
-          left = left - rectYou.width / 2 + rectMe.width / 2;
-          break;
-        case 'right center inner':
-          top = top - rectYou.height / 2 + rectMe.height / 2;
-          left = left - rectYou.width + rectMe.width;
-          break;
-        case 'bottom left inner':
-          top = top - rectYou.height + rectMe.height;
-          break;
-        case 'bottom center inner':
-          top = top - rectYou.height + rectMe.height;
-          left = left - rectYou.width / 2 + rectMe.width / 2;
-          break;
-        case 'bottom right inner':
-          top = top - rectYou.height + rectMe.height;
-          left = left - rectYou.width + rectMe.width;
-          break;
-
-        default:
-          break;
-      }
-
-      dom.css($you, {
-        position: 'absolute',
-        top: top + 'px',
-        left: left + 'px',
-        opacity: 1
-      });
-    }
-
     setPosition();
+
     $body.appendChild($you);
+
+    event.bind(window, 'scroll', function () {
+      // TODO
+      // console.log('scroll');
+    });
 
     event.bind(window, 'resize', function () {
       setPosition();
     });
+
+    // ////////////////////
+    function setPosition() {
+      var boxYou = Object.create(you);
+      boxYou.init(options);
+
+      dom.css($you, {
+        position: 'absolute',
+        top: boxYou.top + 'px',
+        left: boxYou.left + 'px',
+        opacity: 1
+      });
+    }
   }
 };
 
-},{"./dom":3,"./event":4}]},{},[2]);
+},{"./check":4,"./dom":5,"./event":6,"./you":8}],8:[function(require,module,exports){
+'use strict';
+
+var bodyPosition = require('./body-position');
+
+function init(options) {
+  var $me = options.me;
+  var $you = options.you;
+  var rectYou = $you.getBoundingClientRect();
+  var rectMe = $me.getBoundingClientRect();
+
+  var left = rectMe.left + bodyPosition.x;
+  var top = rectMe.top + bodyPosition.y;
+
+  switch (options.where) {
+    case 'top center':
+      top = top - rectYou.height;
+      left = left - rectYou.width / 2 + rectMe.width / 2;
+      break;
+    case 'top left':
+      top = top - rectYou.height;
+      break;
+    case 'top right':
+      top = top - rectYou.height;
+      left = left - rectYou.width + rectMe.width;
+      break;
+
+    case 'top left diagonal':
+      top = top - rectYou.height;
+      left = left - rectYou.width;
+      break;
+
+    case 'top right diagonal':
+      top = top - rectYou.height;
+      left = left + rectMe.width;
+      break;
+
+    case 'bottom center':
+      top = top + rectMe.height;
+      left = left - rectYou.width / 2 + rectMe.width / 2;
+      break;
+    case 'bottom left':
+      top = top + rectMe.height;
+      break;
+    case 'bottom right':
+      top = top + rectMe.height;
+      left = left - rectYou.width + rectMe.width;
+      break;
+    case 'bottom left diagonal':
+      top = top + rectMe.height;
+      left = left - rectYou.width;
+      break;
+    case 'bottom right diagonal':
+      top = top + rectMe.height;
+      left = left + rectMe.width;
+      break;
+
+    case 'left center':
+      top = top - rectYou.height / 2 + rectMe.height / 2;
+      left = left - rectYou.width;
+      break;
+    case 'left top':
+      left = left - rectYou.width;
+      break;
+    case 'left bottom':
+      top = top - rectYou.height + rectMe.height;
+      left = left - rectYou.width;
+      break;
+
+    case 'right center':
+      top = top - rectYou.height / 2 + rectMe.height / 2;
+      left = left + rectMe.width;
+      break;
+    case 'right top':
+      left = left + rectMe.width;
+      break;
+    case 'right bottom':
+      top = top - rectYou.height + rectMe.height;
+      left = left + rectMe.width;
+      break;
+
+    case 'top left inner':
+
+      // nothing
+      break;
+    case 'top center inner':
+      left = left - rectYou.width / 2 + rectMe.width / 2;
+      break;
+    case 'top right inner':
+      left = left - rectYou.width + rectMe.width;
+      break;
+    case 'left center inner':
+      top = top - rectYou.height / 2 + rectMe.height / 2;
+      break;
+    case 'left center inner':
+      top = top - rectYou.height / 2 + rectMe.height / 2;
+      break;
+    case 'center center inner':
+      top = top - rectYou.height / 2 + rectMe.height / 2;
+      left = left - rectYou.width / 2 + rectMe.width / 2;
+      break;
+    case 'right center inner':
+      top = top - rectYou.height / 2 + rectMe.height / 2;
+      left = left - rectYou.width + rectMe.width;
+      break;
+    case 'bottom left inner':
+      top = top - rectYou.height + rectMe.height;
+      break;
+    case 'bottom center inner':
+      top = top - rectYou.height + rectMe.height;
+      left = left - rectYou.width / 2 + rectMe.width / 2;
+      break;
+    case 'bottom right inner':
+      top = top - rectYou.height + rectMe.height;
+      left = left - rectYou.width + rectMe.width;
+      break;
+
+    default:
+      break;
+  }
+
+  var offsetX = parseInt(options.offset.split(' ')[0], 10);
+  var offsetY = parseInt(options.offset.split(' ')[1], 10);
+
+  this.top = top + offsetY;
+  this.left = left + offsetX;
+}
+
+module.exports = { init: init, left: 0, top: 0 };
+
+},{"./body-position":2}]},{},[3]);
