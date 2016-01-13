@@ -24,6 +24,7 @@ $ npm install beside --save
 
 ```html
 <script src="bower_components/beside/dist/js/beside.js"></script>
+
 <div id="me">ME</div>
 <div id="you">YOU</div>
 ```
@@ -38,7 +39,7 @@ beside.init({
 
 # Browser compatibility
 
-- IE8+
+- IE7+
 - Firefox
 - Chrome
 - Safari
