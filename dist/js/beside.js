@@ -179,6 +179,16 @@ module.exports = {
           left = left - rectYou.width + rectMe.width;
           break;
 
+        case 'top left diagonal':
+          top = top - rectYou.height;
+          left = left - rectYou.width;
+          break;
+
+        case 'top right diagonal':
+          top = top - rectYou.height;
+          left = left + rectMe.width;
+          break;
+
         case 'bottom center':
           top = top + rectMe.height;
           left = left - rectYou.width / 2 + rectMe.width / 2;
@@ -189,6 +199,14 @@ module.exports = {
         case 'bottom right':
           top = top + rectMe.height;
           left = left - rectYou.width + rectMe.width;
+          break;
+        case 'bottom left diagonal':
+          top = top + rectMe.height;
+          left = left - rectYou.width;
+          break;
+        case 'bottom right diagonal':
+          top = top + rectMe.height;
+          left = left + rectMe.width;
           break;
 
         case 'left center':
