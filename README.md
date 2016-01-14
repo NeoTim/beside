@@ -1,6 +1,6 @@
 # Beside
 
-A library to make an element beside another.
+A UI library to make an element beside another.
 
 # Demo
 
@@ -28,6 +28,11 @@ $ npm install beside --save
 <div id="me">ME</div>
 <div id="you">YOU</div>
 ```
+
+# UI component base on Beside
+
+* [`fo-popover`] A nice popover for Angular.
+* [`fo-tooltop`] A nice tooltip for Angular.
 
 ```js
 beside.init({
