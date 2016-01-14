@@ -29,10 +29,6 @@ $ npm install beside --save
 <div id="you">YOU</div>
 ```
 
-# UI component base on Beside
-
-* [`fo-popover`] A nice popover for Angular.
-* [`fo-tooltop`] A nice tooltip for Angular.
 
 ```js
 beside.init({
@@ -41,6 +37,11 @@ beside.init({
   where: where
 });
 ```
+
+# UI component base on Beside
+
+* [fo-popover](https://github.com/forsigner/fo-popover) A nice popover for Angular.
+* [fo-tooltop](https://github.com/forsigner/fo-tooltop) A nice tooltip for Angular.
 
 # Browser compatibility
 
