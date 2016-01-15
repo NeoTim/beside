@@ -41,7 +41,7 @@ beside.init({
 # UI component base on Beside
 
 * [fo-popover](https://github.com/forsigner/fo-popover) A nice popover for Angular.
-* [fo-tooltop](https://github.com/forsigner/fo-tooltop) A nice tooltip for Angular.
+* [fo-tooltop](https://github.com/forsigner/fo-tooltip) A nice tooltip for Angular.
 
 # Browser compatibility
 
