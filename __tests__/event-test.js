@@ -7,7 +7,6 @@ jest
 describe('event', function() {
   var event = require('../src/js/event');
   var $ = require('jquery');
-  var count = 0;
 
   var buttonStr = '<button id="button" class="button" style="position: absolute;">';
   var $button;
@@ -18,12 +17,30 @@ describe('event', function() {
   });
 
   it('can bind event to element', function() {
+    var count = 0;
     event.bind($button, 'click', function(e) {
       count++;
     });
 
     $('#button').click();
     expect(count).toBe(1);
+  });
+
+  it('can unbind event to element', function() {
+    var count = 0;
+    event.bind($button, 'click', function(e) {
+      count++;
+    });
+
+    $('#button').click();
+    expect(count).toBe(1);
+
+    event.unbind($button, 'click', function(e) {
+      count++;
+      $('#button').click();
+      expect(count).toBe(1);
+    });
+
   });
 
 });
