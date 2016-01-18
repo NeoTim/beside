@@ -35,4 +35,36 @@ describe('event', function() {
 
   });
 
+  it('check where', function() {
+    try {
+      check.where('top center');
+    } catch (err) {
+      // nothing is normal
+    }
+
+    try {
+      check.where();
+    } catch (err) {
+      expect(err.toString()).toContain('value where invalid');
+    }
+
+    try {
+      check.where('');
+    } catch (err) {
+      expect(err.toString()).toContain('value where invalid');
+    }
+
+    try {
+      check.where('top');
+    } catch (err) {
+      expect(err.toString()).toContain('value where invalid');
+    }
+
+    try {
+      check.where('top left hello');
+    } catch (err) {
+      expect(err.toString()).toContain('value where invalid');
+    }
+
+  });
 });
