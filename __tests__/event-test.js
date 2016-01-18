@@ -43,4 +43,17 @@ describe('event', function() {
 
   });
 
+  it('can bind once event to element', function() {
+    var count = 0;
+    event.once($button, 'click', function(e) {
+      count++;
+    });
+
+    $('#button').click();
+    expect(count).toBe(1);
+
+    $('#button').click();
+    expect(count).toBe(1);
+  });
+
 });
