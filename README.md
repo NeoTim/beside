@@ -1,4 +1,4 @@
-# Beside[![Build Status](https://travis-ci.org/forsigner/beside.svg?branch=master)](https://travis-ci.org/forsigner/beside)
+# Beside [![Build Status](https://travis-ci.org/forsigner/beside.svg?branch=master)](https://travis-ci.org/forsigner/beside)
 
 A UI library to make an element beside another.
 
