@@ -5,8 +5,6 @@ jest.dontMock('../src/js/check');
 describe('event', function() {
   var check = require('../src/js/check');
 
-  beforeEach(function() {});
-
   it('check offset', function() {
     try {
       check.offset('10px -10px');
