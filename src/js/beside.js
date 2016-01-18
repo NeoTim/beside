@@ -1,10 +1,8 @@
 'use strict';
 
-var instance = require('./instance')
+var instance = require('./instance');
 
-module.exports = {
-  init: init
-};
+module.exports = { init: init };
 
 function init(options) {
   var i = Object.create(instance);

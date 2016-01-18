@@ -61,8 +61,9 @@ describe('event', function() {
     }
 
     try {
-      check.where('top left hello');
+      check.where('top left hello world');
     } catch (err) {
+      console.log('-------------');
       expect(err.toString()).toContain('value where invalid');
     }
 

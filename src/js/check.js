@@ -15,7 +15,7 @@ module.exports = {
     }
 
     var arr = where.split(' ');
-    if (arr.length < 2 && arr.length > 3) {
+    if (arr.length < 2 || arr.length > 3) {
       throw new Error('value where invalid, you should set something like "top left"');
     }
 
