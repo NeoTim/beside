@@ -34,7 +34,7 @@ $ npm install beside --save
 beside.init({
   me: document.getElementById('me'),
   you: document.getElementById('you'),
-  where: where
+  where: 'top center'
 });
 ```
 
