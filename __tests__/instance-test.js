@@ -26,7 +26,7 @@ describe('beside', function() {
   });
 
   it('check.where should called', function() {
-    expect(check.offset).toBeCalledWith(options.offset);
+    expect(check.where).toBeCalledWith(options.where);
   });
 
 });
