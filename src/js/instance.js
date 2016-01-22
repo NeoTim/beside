@@ -3,7 +3,7 @@
 var dom = require('./dom');
 var event = require('./event');
 var check = require('./check');
-var you = require('./you');
+var setPosition = require('./set-position');
 
 module.exports = {
   init: function(options) {
@@ -15,30 +15,12 @@ module.exports = {
     var $you = options.you;
     var $body = document.body;
 
-    setPosition();
+    setPosition(options, $you);
 
     $body.appendChild($you);
 
-    event.bind(window, 'scroll', function() {
-      // TODO
-      // console.log('scroll');
-    });
-
     event.bind(window, 'resize', function() {
-      setPosition();
+      setPosition(options, $you);
     });
-
-    // ////////////////////
-    function setPosition() {
-      var boxYou = Object.create(you);
-      boxYou.init(options);
-
-      dom.css($you, {
-        position: 'absolute',
-        top: boxYou.top + 'px',
-        left: boxYou.left + 'px',
-        opacity: 1
-      });
-    }
   }
 };

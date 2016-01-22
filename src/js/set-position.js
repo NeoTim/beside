@@ -1,0 +1,15 @@
+'use strict';
+
+var you = require('./you');
+
+module.exports = function(options, $you) {
+  var boxYou = Object.create(you);
+  boxYou.init(options);
+
+  dom.css($you, {
+    position: 'absolute',
+    top: boxYou.top + 'px',
+    left: boxYou.left + 'px',
+    opacity: 1
+  });
+};

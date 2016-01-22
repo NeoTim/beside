@@ -1,12 +1,12 @@
 'use strict';
 
 jest
-  .dontMock('../src/js/event')
-  .dontMock('jquery');
+  .dontMock('jquery')
+  .dontMock('../src/js/event');
 
 describe('event', function() {
-  var event = require('../src/js/event');
   var $ = require('jquery');
+  var event = require('../src/js/event');
 
   var buttonStr = '<button id="button" class="button" style="position: absolute;">';
   var $button;
