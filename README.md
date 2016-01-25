@@ -1,4 +1,4 @@
-# Beside [![Build Status](https://travis-ci.org/forsigner/beside.svg?branch=master)](https://travis-ci.org/forsigner/beside)
+# Beside [![Build Status](https://travis-ci.org/forsigner/beside.svg?branch=master)](https://travis-ci.org/forsigner/beside) [![NPM Version](http://img.shields.io/npm/v/beside.svg?style=flat)](https://www.npmjs.org/package/beside)
 
 A UI library to make an element beside another.
 
