@@ -3,9 +3,7 @@
 
 var instance = require('./instance');
 
-module.exports = {
-  init: init
-};
+module.exports = { init: init };
 
 function init(options) {
   var i = Object.create(instance);
@@ -59,7 +57,7 @@ module.exports = {
     }
 
     var arr = _where.split(' ');
-    if (arr.length < 2 && arr.length > 3) {
+    if (arr.length < 2 || arr.length > 3) {
       throw new Error('value where invalid, you should set something like "top left"');
     }
   }
@@ -170,10 +168,9 @@ module.exports = event;
 },{}],7:[function(require,module,exports){
 'use strict';
 
-var dom = require('./dom');
 var event = require('./event');
 var check = require('./check');
-var you = require('./you');
+var setPosition = require('./set-position');
 
 module.exports = {
   init: function init(options) {
@@ -185,35 +182,35 @@ module.exports = {
     var $you = options.you;
     var $body = document.body;
 
-    setPosition();
+    setPosition(options, $you);
 
     $body.appendChild($you);
 
-    event.bind(window, 'scroll', function () {
-      // TODO
-      // console.log('scroll');
-    });
-
     event.bind(window, 'resize', function () {
-      setPosition();
+      setPosition(options, $you);
     });
-
-    // ////////////////////
-    function setPosition() {
-      var boxYou = Object.create(you);
-      boxYou.init(options);
-
-      dom.css($you, {
-        position: 'absolute',
-        top: boxYou.top + 'px',
-        left: boxYou.left + 'px',
-        opacity: 1
-      });
-    }
   }
 };
 
-},{"./check":4,"./dom":5,"./event":6,"./you":8}],8:[function(require,module,exports){
+},{"./check":4,"./event":6,"./set-position":8}],8:[function(require,module,exports){
+'use strict';
+
+var dom = require('./dom');
+var you = require('./you');
+
+module.exports = function (options, $you) {
+  var boxYou = Object.create(you);
+  boxYou.init(options);
+
+  dom.css($you, {
+    position: 'absolute',
+    top: boxYou.top + 'px',
+    left: boxYou.left + 'px',
+    opacity: 1
+  });
+};
+
+},{"./dom":5,"./you":9}],9:[function(require,module,exports){
 'use strict';
 
 var bodyPosition = require('./body-position');

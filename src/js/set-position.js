@@ -1,5 +1,6 @@
 'use strict';
 
+var dom = require('./dom');
 var you = require('./you');
 
 module.exports = function(options, $you) {
