@@ -5,7 +5,6 @@ jest
   .dontMock('../src/js/instance');
 
 describe('beside', function() {
-  var $ = require('jquery');
   var instance = require('../src/js/instance');
   var check = require('../src/js/check');
   var setPosition = require('../src/js/set-position');
@@ -22,8 +21,6 @@ describe('beside', function() {
 
     var i = Object.create(instance);
     i.init(options);
-
-    $(window).trigger('resize');
   });
 
   it('check.offset should called', function() {

@@ -1,6 +1,5 @@
 'use strict';
 
-var dom = require('./dom');
 var event = require('./event');
 var check = require('./check');
 var setPosition = require('./set-position');
