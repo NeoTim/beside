@@ -3,11 +3,11 @@
 jest
   .dontMock('../src/js/beside');
 
-describe('beside', function() {
+describe('beside', () => {
   var beside = require('../src/js/beside');
   var instance = require('../src/js/instance');
 
-  it('init in instance should called', function() {
+  it('init in instance should called', () => {
     document.body.innerHTML = '<div id="me">ME</div><div id="you">YOU</div>';
 
     beside.init({
@@ -21,7 +21,5 @@ describe('beside', function() {
       you: document.getElementById('you'),
       where: 'top center'
     });
-
   });
-
 });

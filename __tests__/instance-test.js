@@ -4,13 +4,13 @@ jest
   .dontMock('jquery')
   .dontMock('../src/js/instance');
 
-describe('beside', function() {
+describe('beside', () => {
   var instance = require('../src/js/instance');
   var check = require('../src/js/check');
   var setPosition = require('../src/js/set-position');
   var options;
 
-  beforeEach(function() {
+  beforeEach(() => {
     document.body.innerHTML = '<div id="me">ME</div><div id="you">YOU</div>';
     options = {
       me: document.getElementById('me'),
@@ -23,15 +23,15 @@ describe('beside', function() {
     i.init(options);
   });
 
-  it('check.offset should called', function() {
+  it('check.offset should called', () => {
     expect(check.offset).toBeCalledWith(options.offset);
   });
 
-  it('check.where should called', function() {
+  it('check.where should called', () => {
     expect(check.where).toBeCalledWith(options.where);
   });
 
-  it('setPosition should be called', function() {
+  it('setPosition should be called', () => {
     expect(setPosition).toBeCalledWith(options, document.getElementById('you'));
   });
 

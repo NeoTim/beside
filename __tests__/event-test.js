@@ -4,21 +4,21 @@ jest
   .dontMock('jquery')
   .dontMock('../src/js/event');
 
-describe('event', function() {
+describe('event', () => {
   var $ = require('jquery');
   var event = require('../src/js/event');
 
   var buttonStr = '<button id="button" class="button" style="position: absolute;">';
   var $button;
 
-  beforeEach(function() {
+  beforeEach(() => {
     document.body.innerHTML = buttonStr;
     $button = document.getElementById('button');
   });
 
-  it('can bind event to element', function() {
+  it('can bind event to element', () => {
     var count = 0;
-    event.bind($button, 'click', function(e) {
+    event.bind($button, 'click', e => {
       count++;
     });
 
@@ -26,16 +26,16 @@ describe('event', function() {
     expect(count).toBe(1);
   });
 
-  it('can unbind event to element', function() {
+  it('can unbind event to element', () => {
     var count = 0;
-    event.bind($button, 'click', function(e) {
+    event.bind($button, 'click', e => {
       count++;
     });
 
     $('#button').click();
     expect(count).toBe(1);
 
-    event.unbind($button, 'click', function(e) {
+    event.unbind($button, 'click', e => {
       count++;
       $('#button').click();
       expect(count).toBe(1);
@@ -43,9 +43,9 @@ describe('event', function() {
 
   });
 
-  it('can bind once event to element', function() {
+  it('can bind once event to element', () => {
     var count = 0;
-    event.once($button, 'click', function(e) {
+    event.once($button, 'click', e => {
       count++;
     });
 
