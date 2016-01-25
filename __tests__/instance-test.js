@@ -22,6 +22,8 @@ describe('beside', function() {
 
     var i = Object.create(instance);
     i.init(options);
+
+    $(window).trigger('resize');
   });
 
   it('check.offset should called', function() {
