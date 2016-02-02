@@ -4,7 +4,7 @@ A UI library to make an element beside another.
 
 # Demo
 
-[demo](http://beside.mipinr.com/)
+[demo](http://forsigner.com/beside/)
 
 # Install
 
