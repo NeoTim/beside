@@ -5,7 +5,7 @@ var check = require('./check');
 var setPosition = require('./set-position');
 
 module.exports = {
-  init: function(options) {
+  init: function (options) {
     options.offset = options.offset || '0 0'; // default value
 
     check.offset(options.offset);
@@ -18,7 +18,7 @@ module.exports = {
 
     $body.appendChild($you);
 
-    event.bind(window, 'resize', function() {
+    event.bind(window, 'resize', function () {
       setPosition(options, $you);
     });
   }

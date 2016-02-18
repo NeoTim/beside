@@ -1,10 +1,26 @@
 'use strict';
 
-var bodyPosition = require('./body-position');
+// var bodyPosition = require('./body-position');
+var supportPageOffset = window.pageXOffset !== undefined;
+var isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
+var event = require('./event');
+
+var bodyPosition = {
+  x: supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft,
+  y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
+};
+
+event.bind(window, 'scroll', function () {
+  bodyPosition = {
+    x: supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft,
+    y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
+  };
+});
 
 function init(options) {
   var $me = options.me;
   var $you = options.you;
+
   var rectYou = $you.getBoundingClientRect();
   var rectMe = $me.getBoundingClientRect();
 

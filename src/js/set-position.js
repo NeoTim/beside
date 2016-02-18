@@ -2,8 +2,9 @@
 
 var dom = require('./dom');
 var you = require('./you');
+var event = require('./event');
 
-module.exports = function(options, $you) {
+module.exports = function (options, $you) {
   var boxYou = Object.create(you);
   boxYou.init(options);
 

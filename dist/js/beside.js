@@ -10,18 +10,7 @@ function init(options) {
   i.init(options);
 }
 
-},{"./instance":7}],2:[function(require,module,exports){
-'use strict';
-
-var supportPageOffset = window.pageXOffset !== undefined;
-var isCSS1Compat = (document.compatMode || '') === 'CSS1Compat';
-
-var x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
-var y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
-
-module.exports = { x: x, y: y };
-
-},{}],3:[function(require,module,exports){
+},{"./instance":6}],2:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -39,7 +28,7 @@ var beside = require('./beside');
   return beside;
 });
 
-},{"./beside":1}],4:[function(require,module,exports){
+},{"./beside":1}],3:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -63,7 +52,7 @@ module.exports = {
   }
 };
 
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -142,7 +131,7 @@ var dom = {
 
 module.exports = dom;
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 var event = {
@@ -165,7 +154,7 @@ var event = {
 
 module.exports = event;
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 var event = require('./event');
@@ -192,11 +181,12 @@ module.exports = {
   }
 };
 
-},{"./check":4,"./event":6,"./set-position":8}],8:[function(require,module,exports){
+},{"./check":3,"./event":5,"./set-position":7}],7:[function(require,module,exports){
 'use strict';
 
 var dom = require('./dom');
 var you = require('./you');
+var event = require('./event');
 
 module.exports = function (options, $you) {
   var boxYou = Object.create(you);
@@ -210,14 +200,31 @@ module.exports = function (options, $you) {
   });
 };
 
-},{"./dom":5,"./you":9}],9:[function(require,module,exports){
+},{"./dom":4,"./event":5,"./you":8}],8:[function(require,module,exports){
 'use strict';
 
-var bodyPosition = require('./body-position');
+// var bodyPosition = require('./body-position');
+
+var supportPageOffset = window.pageXOffset !== undefined;
+var isCSS1Compat = (document.compatMode || '') === 'CSS1Compat';
+var event = require('./event');
+
+var bodyPosition = {
+  x: supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft,
+  y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
+};
+
+event.bind(window, 'scroll', function () {
+  bodyPosition = {
+    x: supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft,
+    y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
+  };
+});
 
 function init(options) {
   var $me = options.me;
   var $you = options.you;
+
   var rectYou = $you.getBoundingClientRect();
   var rectMe = $me.getBoundingClientRect();
 
@@ -340,4 +347,4 @@ function init(options) {
 
 module.exports = { init: init, left: 0, top: 0 };
 
-},{"./body-position":2}]},{},[3]);
+},{"./event":5}]},{},[2]);
