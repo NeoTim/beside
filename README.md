@@ -2,25 +2,25 @@
 
 A UI library to make an element beside another.
 
-# Demo
+### Demo
 
 [demo](http://forsigner.com/beside/)
 
-# Install
+### Install
 
-### bower
+#### bower
 
 ```bash
 $ bower install beside --save
 ```
 
-### npm
+#### npm
 
 ```bash
 $ npm install beside --save
 ```
 
-# Usage
+### Usage
 
 ```html
 <script src="bower_components/beside/dist/js/beside.js"></script>
@@ -38,15 +38,20 @@ beside.init({
 });
 ```
 
-# UI component base on Beside
+### UI component base on Beside
 
 * [fo-popover](https://github.com/forsigner/fo-popover) A nice popover for Angular.
 * [fo-tooltop](https://github.com/forsigner/fo-tooltip) A nice tooltip for Angular.
 
-# Browser compatibility
+### Browser compatibility
 
-- IE7+
+- IE8+
 - Firefox
 - Chrome
 - Safari
 - Opera
+
+
+### License
+
+  [MIT](LICENSE)
