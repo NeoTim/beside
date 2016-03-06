@@ -45,7 +45,7 @@ beside.init({
 
 ### Browser compatibility
 
-- IE8+
+- IE7 && IE7+
 - Firefox
 - Chrome
 - Safari
