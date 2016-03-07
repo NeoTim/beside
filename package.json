@@ -1,8 +1,8 @@
 {
   "name": "beside",
   "version": "1.0.4",
-  "description": "beside me",
-  "main": "index.js",
+  "description": "A UI library to make an element beside another",
+  "main": "src/beside.js",
   "scripts": {
     "test": "jest"
   },
@@ -11,6 +11,8 @@
     "url": "git+https://github.com/forsigner/beside.git"
   },
   "keywords": [
+    "beside",
+    "tether",
     "popover",
     "tooltip"
   ],
@@ -27,8 +29,6 @@
     "browserify": "^13.0.0",
     "eslint": "^1.10.3",
     "gulp": "^3.9.0",
-    "gulp-cssnano": "^2.1.0",
-    "gulp-less": "^3.0.5",
     "gulp-rename": "^1.2.2",
     "gulp-replace-name": "^1.0.1",
     "gulp-streamify": "^1.0.2",
