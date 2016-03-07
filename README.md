@@ -6,7 +6,7 @@ A UI library to make an element beside another.
 
 [demo](http://forsigner.com/beside/)
 
-### Install
+### Installation
 
 #### bower
 
@@ -37,6 +37,35 @@ beside.init({
   where: 'top center'
 });
 ```
+
+### Options `where`
+
+- top center
+- top left
+- top right
+- top left diagonal
+- top right diagonal
+- bottom center
+- bottom left
+- bottom right
+- bottom left diagonal
+- bottom right diagonal
+- left center
+- left top
+- left bottom
+- right center
+- right top
+- right bottom
+- top left inner
+- top center inner
+- top right inner
+- left center inner
+- left center inner
+- center center inner
+- right center inner
+- bottom left inner
+- bottom center inner
+- bottom right inner
 
 ### UI component base on Beside
 
