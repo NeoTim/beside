@@ -2,12 +2,12 @@
 
 jest
   .dontMock('jquery')
-  .dontMock('../src/js/instance');
+  .dontMock('../src/instance');
 
 describe('beside', () => {
-  var instance = require('../src/js/instance');
-  var check = require('../src/js/check');
-  var setPosition = require('../src/js/set-position');
+  var instance = require('../src/instance');
+  var check = require('../src/check');
+  var setPosition = require('../src/set-position');
   var options;
 
   beforeEach(() => {

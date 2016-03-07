@@ -1,9 +1,9 @@
 'use strict';
 
-jest.dontMock('../src/js/check');
+jest.dontMock('../src/check');
 
 describe('event', () => {
-  var check = require('../src/js/check');
+  var check = require('../src/check');
 
   it('check offset', () => {
     expect(() => check.offset('10px -10px')).not.toThrow();

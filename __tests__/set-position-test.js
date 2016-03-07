@@ -2,11 +2,11 @@
 
 jest
   .dontMock('jquery')
-  .dontMock('../src/js/set-position');
+  .dontMock('../src/set-position');
 
 describe('beside', () => {
-  var setPosition = require('../src/js/set-position');
-  var dom = require('../src/js/dom');
+  var setPosition = require('../src/set-position');
+  var dom = require('../src/dom');
 
   beforeEach(() => {
     document.body.innerHTML = '<div id="me">ME</div><div id="you">YOU</div>';

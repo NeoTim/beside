@@ -2,11 +2,11 @@
 
 jest
   .dontMock('jquery')
-  .dontMock('../src/js/event');
+  .dontMock('../src/event');
 
 describe('event', () => {
   var $ = require('jquery');
-  var event = require('../src/js/event');
+  var event = require('../src/event');
 
   var buttonStr = '<button id="button" class="button" style="position: absolute;">';
   var $button;

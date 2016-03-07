@@ -1,11 +1,11 @@
 'use strict';
 
 jest
-  .dontMock('../src/js/beside');
+  .dontMock('../src/beside');
 
 describe('beside', () => {
-  var beside = require('../src/js/beside');
-  var instance = require('../src/js/instance');
+  var beside = require('../src/beside');
+  var instance = require('../src/instance');
 
   it('init in instance should called', () => {
     document.body.innerHTML = '<div id="me">ME</div><div id="you">YOU</div>';

@@ -1,9 +1,9 @@
 'use strict';
 
-jest.dontMock('../src/js/dom');
+jest.dontMock('../src/dom');
 
 describe('dom', () => {
-  var dom = require('../src/js/dom');
+  var dom = require('../src/dom');
   var buttonStr = '<button id="button" class="button" style="position: absolute;">';
   var $button;
 
