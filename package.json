@@ -2,7 +2,7 @@
   "name": "beside",
   "version": "1.0.5",
   "description": "A UI library to make an element beside another",
-  "main": "src/bede.js",
+  "main": "src/beside.js",
   "scripts": {
     "test": "jest"
   },
