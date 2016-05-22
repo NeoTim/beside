@@ -7,7 +7,7 @@ module.exports = { init: init };
 
 function init(options) {
   var i = Object.create(instance);
-  i.init(options);
+  return i.init(options);
 }
 
 },{"./instance":6}],2:[function(require,module,exports){
@@ -171,13 +171,22 @@ module.exports = {
     var $you = options.you;
     var $body = document.body;
 
-    setPosition(options, $you);
-
     $body.appendChild($you);
 
-    event.bind(window, 'resize', function () {
+    setPosition(options, $you);
+
+    function onResize() {
       setPosition(options, $you);
-    });
+    }
+
+    var destroy = function destroy() {
+      event.unbind(window, 'resize', onResize);
+      $you.remove();
+    };
+
+    event.bind(window, 'resize', onResize);
+
+    return destroy;
   }
 };
 
