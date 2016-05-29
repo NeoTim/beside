@@ -6,5 +6,5 @@ module.exports = { init: init };
 
 function init(options) {
   var i = Object.create(instance);
-  i.init(options);
+  return i.init(options);
 }
